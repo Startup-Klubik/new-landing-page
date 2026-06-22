@@ -1,0 +1,1 @@
+import"./shared-ClaTcp0O.js";document.addEventListener(`DOMContentLoaded`,()=>{let e=document.getElementById(`navbar`);e&&window.addEventListener(`scroll`,()=>{window.scrollY>50?e.style.boxShadow=`0 2px 20px rgba(0,0,0,0.05)`:e.style.boxShadow=`none`},{passive:!0})});
