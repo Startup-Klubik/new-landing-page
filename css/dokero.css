@@ -1,0 +1,510 @@
+/* ======================================
+   DOKERO — Light Theme Styles
+   ====================================== */
+
+:root {
+  /* Brand colors from design system */
+  --dk-bg: #FAFBFF;
+  --dk-bg-alt: #F3F1F6;
+  --dk-surface: #FFFFFF;
+  --dk-surface-border: rgba(26, 26, 35, 0.07);
+  --dk-surface-shadow: 0 4px 32px rgba(26, 26, 35, 0.06);
+  --dk-text-primary: #1a1a23;
+  --dk-text-secondary: #64617A;
+  --dk-text-muted: #9894A8;
+
+  /* Brand gradient: Purple (x11) → Autumn Leaf at -45° */
+  --dk-accent-purple: #b500e6;
+  --dk-accent-orange: #e67000;
+  --dk-brand-gradient: linear-gradient(-45deg, #b500e6 0%, #e67000 100%);
+  --dk-brand-gradient-soft: linear-gradient(-45deg, rgba(181, 0, 230, 0.08) 0%, rgba(230, 112, 0, 0.08) 100%);
+
+  /* Specy accent for teaser */
+  --sp-indigo: #6366F1;
+  --sp-purple: #A855F7;
+}
+
+body {
+  background: var(--dk-bg);
+  color: var(--dk-text-primary);
+}
+
+/* ======================================
+   DOKERO NAVBAR
+   ====================================== */
+
+.navbar {
+  background: rgba(250, 251, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--dk-surface-border);
+}
+
+.nav-links a {
+  color: var(--dk-text-secondary);
+}
+
+.nav-links a:hover {
+  color: var(--dk-text-primary);
+}
+
+.nav-toggle span {
+  background: var(--dk-text-primary);
+}
+
+.btn-nav-contact {
+  background: var(--dk-brand-gradient);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.btn-nav-contact:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(181, 0, 230, 0.25);
+}
+
+.btn-nav-outline {
+  border: 1.5px solid var(--dk-surface-border);
+  color: var(--dk-text-primary);
+  padding: 0.55rem 1.1rem;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.btn-nav-outline:hover {
+  border-color: var(--dk-text-secondary);
+  background: rgba(26, 26, 35, 0.03);
+}
+
+/* ======================================
+   DOKERO HERO
+   ====================================== */
+
+.dk-hero {
+  padding-top: 10rem;
+  padding-bottom: 6rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.dk-hero::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(181, 0, 230, 0.06) 0%, rgba(230, 112, 0, 0.04) 40%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dk-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.dk-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--dk-bg-alt);
+  border: 1px solid var(--dk-surface-border);
+  border-radius: 50px;
+  padding: 0.45rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--dk-text-primary);
+  margin-bottom: 2rem;
+  letter-spacing: 0.03em;
+}
+
+.dk-hero h1 {
+  font-size: clamp(2.8rem, 7vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.08;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dk-hero h1 .gradient-text {
+  background: var(--dk-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dk-hero-sub {
+  font-size: 1.2rem;
+  color: var(--dk-text-secondary);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+
+.dk-hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-brand {
+  background: var(--dk-brand-gradient);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(181, 0, 230, 0.2);
+}
+
+.btn-brand:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(181, 0, 230, 0.3);
+}
+
+.btn-outline-dk {
+  border: 2px solid var(--dk-surface-border);
+  color: var(--dk-text-primary);
+  background: var(--dk-surface);
+}
+
+.btn-outline-dk:hover {
+  border-color: var(--dk-text-secondary);
+  background: var(--dk-bg-alt);
+}
+
+/* Geometric decoration */
+.dk-hero-geo {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 4rem;
+  opacity: 0.5;
+}
+
+.geo-shape {
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--dk-surface-border);
+  border-radius: 12px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.geo-shape:nth-child(2) {
+  animation-delay: -2s;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.geo-shape:nth-child(3) {
+  animation-delay: -4s;
+  width: 35px;
+  height: 35px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+/* ======================================
+   DOKERO SERVICES
+   ====================================== */
+
+.dk-services {
+  background: var(--dk-bg);
+}
+
+.service-card {
+  background: var(--dk-surface);
+  border: 1px solid var(--dk-surface-border);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--dk-brand-gradient);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--dk-surface-shadow);
+  border-color: rgba(181, 0, 230, 0.12);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--dk-brand-gradient-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.service-card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.8rem;
+  color: var(--dk-text-primary);
+}
+
+.service-card p {
+  color: var(--dk-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+/* ======================================
+   TRUST / SOCIAL PROOF
+   ====================================== */
+
+.dk-trust {
+  background: var(--dk-bg-alt);
+  border-top: 1px solid var(--dk-surface-border);
+  border-bottom: 1px solid var(--dk-surface-border);
+  padding: 4rem 0;
+}
+
+.trust-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.trust-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--dk-text-muted);
+}
+
+.trust-logos {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.trust-logo {
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  height: 40px;
+}
+
+.trust-logo:hover {
+  opacity: 1;
+}
+
+/* ======================================
+   MODERN CONTACT SECTION
+   ====================================== */
+
+.dk-contact-modern {
+  padding: 8rem 0;
+  background: #0A0A14;
+  color: #fff;
+}
+
+.contact-modern-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.contact-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--dk-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.contact-modern-text h2 {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.contact-modern-text p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  max-width: 450px;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-method-card {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.contact-method-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateX(5px);
+}
+
+.cm-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.contact-method-card h4 {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.contact-method-card span {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+.form-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 3rem;
+  border-radius: 24px;
+}
+
+.form-card .form-group label {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.form-card .form-group input,
+.form-card .form-group textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.form-card .form-group input:focus,
+.form-card .form-group textarea:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.form-card .form-group input::placeholder,
+.form-card .form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ======================================
+   DOKERO FOOTER
+   ====================================== */
+
+.dk-footer {
+  background: #0A0A14;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dk-footer .footer-text {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.footer-contact {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer-contact a {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+
+.footer-contact a:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ======================================
+   RESPONSIVE — DOKERO
+   ====================================== */
+
+@media (max-width: 768px) {
+  .dk-hero {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+  }
+
+  .dk-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .dk-hero-sub {
+    font-size: 1.05rem;
+  }
+
+  .contact-modern-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  
+  .form-card {
+    padding: 2rem;
+  }
+
+  .trust-logos {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .nav-links {
+    background: var(--dk-surface);
+    box-shadow: -4px 0 24px rgba(0,0,0,0.1);
+  }
+}
