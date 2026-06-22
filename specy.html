@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Specy — AI Agent for Code Architecture Governance</title>
+    <meta name="description" content="Specy is an AI agent that controls a VS Code plugin, empowering developers to govern, create, and maintain application architecture through generated specs." />
+    <meta property="og:title" content="Specy — Code Architecture Governance for Developers & AI Agents" />
+    <meta property="og:description" content="Generate specs from raw code. Derive SDKs. Keep developers in the loop." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/dokero-icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/shared.css" />
+    <link rel="stylesheet" href="/css/specy.css" />
+  </head>
+  <body>
+
+    <!-- Background Glows -->
+    <div class="sp-glow sp-glow-1" aria-hidden="true"></div>
+    <div class="sp-glow sp-glow-2" aria-hidden="true"></div>
+
+    <!-- ================================ -->
+    <!-- NAVBAR                           -->
+    <!-- ================================ -->
+    <nav class="navbar" id="navbar">
+      <div class="container">
+        <a href="/specy.html" class="nav-logo">
+          <span class="nav-logo-text">Specy</span>
+          <span class="nav-logo-badge">by Dokero</span>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+          <a href="#features">Features</a>
+          <a href="#early-access">Early Access</a>
+          <a href="/" class="nav-back">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Dokero
+          </a>
+        </div>
+
+        <div class="nav-actions">
+          <a href="#early-access" class="btn btn-nav-cta">Get Early Access</a>
+        </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <main>
+
+      <!-- ================================ -->
+      <!-- HERO                             -->
+      <!-- ================================ -->
+      <section class="sp-hero" id="hero">
+        <div class="container grid-2">
+          <div class="sp-hero-text">
+            <div class="sp-hero-badge fade-in">
+              <span>🛡️</span> Architecture Guardrails
+            </div>
+            <h1 class="fade-in delay-1">
+              Architecture Governance<br/>
+              <span class="gradient-text">for Humans & AI.</span>
+            </h1>
+            <p class="sp-hero-sub fade-in delay-2">
+              Specy establishes strict architectural guardrails, empowering developers to govern and maintain their codebase while AI development agents safely write the code.
+            </p>
+            <div class="sp-hero-actions fade-in delay-3">
+              <a href="#early-access" class="btn btn-accent">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                Join Waitlist
+              </a>
+              <a href="#how-it-works" class="btn btn-ghost">See How It Works</a>
+            </div>
+          </div>
+
+          <div class="sp-hero-visual fade-in from-right delay-2">
+            <div class="mockup-window">
+              <div class="mockup-header">
+                <span class="mockup-dot r"></span>
+                <span class="mockup-dot y"></span>
+                <span class="mockup-dot g"></span>
+                <span class="mockup-title">specy — architecture agent</span>
+              </div>
+              <div class="mockup-body">
+
+                <!-- View 1: Raw Code -->
+                <div class="mockup-view active" id="view-1">
+                  <div class="view-tag warn">ts raw code</div>
+                  <div class="code-ln"><span class="kw">export class</span> <span class="typ">PaymentProcessor</span> {</div>
+                  <div class="code-ln indent"><span class="kw">constructor</span>(<span class="kw">private</span> stripe: <span class="typ">StripeClient</span>) {}</div>
+                  <div class="code-ln gap"><span class="indent"></span><span class="kw">async</span> <span class="fn">process</span>(amount: <span class="typ">number</span>) {</div>
+                  <div class="code-ln indent"><span class="indent"></span><span class="cmt">// Directly calling external API without interfaces</span></div>
+                  <div class="code-ln indent"><span class="indent"></span><span class="kw">return await</span> <span class="kw">this</span>.stripe.<span class="fn">charge</span>(amount);</div>
+                  <div class="code-ln indent">}</div>
+                  <div class="code-ln">}</div>
+                </div>
+
+                <!-- View 2: Generated Spec -->
+                <div class="mockup-view" id="view-2">
+                  <div class="view-tag info">📋 intent spec</div>
+                  <div class="code-ln"><span class="kw">service</span>: <span class="str">PaymentProcessor</span></div>
+                  <div class="code-ln"><span class="kw">intent</span>: <span class="str">Handle user payments securely</span></div>
+                  <div class="code-ln gap"><span class="kw">dependencies</span>:</div>
+                  <div class="code-ln indent">- <span class="str">PaymentGatewayInterface</span> <span class="cmt">(Abstracted)</span></div>
+                  <div class="code-ln gap"><span class="kw">governance_rules</span>:</div>
+                  <div class="code-ln indent">- <span class="typ">no_direct_sdk_calls</span>: <span class="num">true</span></div>
+                  <div class="code-ln indent">- <span class="typ">require_retry_mechanism</span>: <span class="num">true</span></div>
+                </div>
+
+                <!-- View 3: Diagrams -->
+                <div class="mockup-view" id="view-3">
+                  <div class="diagram-tabs">
+                    <button class="diag-tab active" data-diag="class">Class</button>
+                    <button class="diag-tab" data-diag="flow">Flow</button>
+                  </div>
+                  
+                  <!-- Class Diagram -->
+                  <div class="diag-view active" id="diag-class">
+                    <div class="mermaid-mock">
+                      <div class="mm-node">PaymentProcessor</div>
+                      <div class="mm-arrow">↓ implements</div>
+                      <div class="mm-node abstract">PaymentGatewayInterface</div>
+                      <div class="mm-arrow">↓ injected</div>
+                      <div class="mm-node">StripeAdapter</div>
+                    </div>
+                  </div>
+                  
+                  <!-- Flow Diagram -->
+                  <div class="diag-view" id="diag-flow" style="display: none;">
+                    <div class="mermaid-mock row">
+                      <div class="mm-node circle">Start</div>
+                      <div class="mm-arrow">→</div>
+                      <div class="mm-node diamond">Retry Logic</div>
+                      <div class="mm-arrow">→</div>
+                      <div class="mm-node">Gateway API</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="mockup-steps">
+                <button class="step-dot active" data-step="1">TypeScript</button>
+                <button class="step-dot" data-step="2">Spec</button>
+                <button class="step-dot" data-step="3">Diagram</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================ -->
+      <!-- WHAT SPECY DOES                  -->
+      <!-- ================================ -->
+      <section class="section sp-explainer" id="how-it-works">
+        <div class="container grid-2">
+          <div class="fade-in">
+            <div class="section-header" style="text-align: left; margin: 0;">
+              <h2>How <span class="gradient-text">Specy</span> Works</h2>
+              <p style="color: var(--sp-text-secondary)">Specy lives inside your VS Code. It sets up architectural guardrails for AI development agents and drives feature development through interactive diagrams.</p>
+            </div>
+          </div>
+          <div class="explainer-visual fade-in from-right">
+            <div class="flow-step">
+              <div class="flow-num">1</div>
+              <div>
+                <h4>Raw Code → Specs → Diagrams</h4>
+                <p>Specy scans any input codebase and automatically extracts architectural specifications, visualizing them as interactive diagrams.</p>
+              </div>
+            </div>
+            <div class="flow-connector"></div>
+            <div class="flow-step">
+              <div class="flow-num">2</div>
+              <div>
+                <h4>Interactive Feature Design</h4>
+                <p>Describe your feature and attach a base diagram. The AI agent modifies it within your guardrails, and you tweak the specs until satisfied.</p>
+              </div>
+            </div>
+            <div class="flow-connector"></div>
+            <div class="flow-step">
+              <div class="flow-num">3</div>
+              <div>
+                <h4>Multi-Language Porting</h4>
+                <p>Take a spec extracted from one language, review its architecture diagram, and confidently replicate it into any output language code or SDK.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================ -->
+      <!-- TECHNICAL ARCHITECTURE           -->
+      <!-- ================================ -->
+      <section class="section sp-architecture" id="architecture">
+        <div class="container">
+          <div class="section-header fade-in">
+            <h2>The <span class="gradient-text">Engine</span></h2>
+            <p style="color: var(--sp-text-secondary)">Specy is a decoupled architecture consisting of a developer-friendly UI and a powerful AI agent suite.</p>
+          </div>
+
+          <div class="arch-diagram fade-in delay-1">
+            <div class="arch-block client">
+              <div class="arch-badge">Client</div>
+              <h3>VS Code Extension</h3>
+              <p>The Developer Dashboard</p>
+              <ul class="arch-list">
+                <li>Real-time governance warnings</li>
+                <li>Diagram visualization</li>
+                <li>Manual spec tweaking</li>
+              </ul>
+            </div>
+
+            <div class="arch-connector">
+              <div class="arch-line"></div>
+              <span class="arch-label">MCP Protocol</span>
+            </div>
+
+            <div class="arch-block server">
+              <div class="arch-badge mcp">Agent Suite</div>
+              <h3>AI Agent Engine</h3>
+              <p>Powered by MCP Server</p>
+              <ul class="arch-list">
+                <li>Code parsing & extraction</li>
+                <li>Autonomous diagram generation</li>
+                <li>Guardrail enforcement</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================ -->
+      <!-- FEATURES                         -->
+      <!-- ================================ -->
+      <section class="section sp-features" id="features">
+        <div class="container">
+          <div class="section-header fade-in">
+            <h2>Built for <span class="gradient-text">Governance</span></h2>
+            <p style="color: var(--sp-text-secondary)">Every feature is designed to keep developers in the loop while AI handles the heavy lifting.</p>
+          </div>
+
+          <!-- Feature 1: Spec Generation -->
+          <div class="feature-block grid-2 fade-in" id="feature-spec">
+            <div class="feature-text">
+              <h3>Spec Generation from Code</h3>
+              <p>Specy extracts architectural specifications from your raw code. These specs become the single source of truth — usable for creating new variations, modifying existing implementations, or building on top of established patterns.</p>
+              <ul class="feature-list">
+                <li>Automatic pattern detection</li>
+                <li>Dependency graph extraction</li>
+                <li>Spec-driven code generation</li>
+              </ul>
+            </div>
+            <div class="feature-visual">
+              <div class="glass-card spec-card-visual">
+                <div class="view-tag info" style="margin-bottom: 1.2rem;">📋 order-handler.spec</div>
+                <div class="code-ln"><span class="kw">name</span>: <span class="str">OrderHandler</span></div>
+                <div class="code-ln"><span class="kw">type</span>: <span class="typ">service</span></div>
+                <div class="code-ln"><span class="kw">version</span>: <span class="num">2.1.0</span></div>
+                <div class="code-ln gap"><span class="kw">dependencies</span>:</div>
+                <div class="code-ln indent">- <span class="str">Repository</span> <span class="cmt">via DI</span></div>
+                <div class="code-ln indent">- <span class="str">AuthService</span> <span class="cmt">via DI</span></div>
+                <div class="code-ln gap"><span class="kw">patterns</span>:</div>
+                <div class="code-ln indent">- <span class="typ">repository_pattern</span>: ✅</div>
+                <div class="code-ln indent">- <span class="typ">dependency_injection</span>: ✅</div>
+                <div class="code-ln indent">- <span class="typ">single_responsibility</span>: ✅</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 2: Intent-Driven Replication -->
+          <div class="feature-block grid-2 reverse fade-in" id="feature-sdk">
+            <div class="feature-text">
+              <h3>Intent-Driven Replication & Generation</h3>
+              <p>Specy doesn't blindly copy code. By relying on specs that capture true architectural intent, you can confidently derive entirely new features or replicate existing code into different programming languages.</p>
+              <p style="color: var(--sp-text-secondary); margin-top: 1rem; font-size: 0.95rem;"><strong>Developer First:</strong> All generated specs are fully editable. The AI drafts the blueprint, but it is entirely up to you to tweak and adjust the rules to your exact liking before implementation begins.</p>
+              <ul class="feature-list" style="margin-top: 1.5rem;">
+                <li>Cross-language code replication</li>
+                <li>Fully editable spec blueprints</li>
+                <li>Intent-aware feature generation</li>
+              </ul>
+            </div>
+            <div class="feature-visual">
+              <div class="glass-card" style="padding-top: 1.5rem;">
+                
+                <div class="diagram-tabs" style="justify-content: center; margin-bottom: 2rem;">
+                  <button class="flow-tab diag-tab active" data-flow="legacy">Code Replication</button>
+                  <button class="flow-tab diag-tab" data-flow="sdk">SDK Derivation</button>
+                </div>
+
+                <!-- Flow 1: Legacy Replication -->
+                <div class="sdk-flow centered active" id="flow-legacy">
+                  <div class="sdk-node source" style="border-color: var(--sp-warning); background: rgba(234, 179, 8, 0.08); z-index: 2;">
+                    <span class="sdk-icon">🐍</span>
+                    <span>Legacy Python Service</span>
+                  </div>
+                  <div class="sdk-arrow-centered"></div>
+                  <div class="sdk-node" style="border-color: var(--sp-accent); background: rgba(99, 102, 241, 0.08); z-index: 2;">
+                    <span class="sdk-icon">📋</span>
+                    <span>Editable Architecture Spec</span>
+                  </div>
+                  
+                  <!-- Trunk -->
+                  <div style="width: 2px; height: 16px; background: var(--sp-surface-border);"></div>
+                  
+                  <div class="sdk-branch-container items-2">
+                    <div class="sdk-branch-line"></div>
+                    
+                    <div class="sdk-branch-col">
+                      <div class="sdk-branch-drop"></div>
+                      <div class="sdk-node" style="border-color: var(--sp-success); background: rgba(34, 197, 94, 0.08); font-size: 0.8rem; padding: 0.6rem 0.8rem;">
+                        <span class="sdk-icon">⚡</span>
+                        <span>Modern Rust Service</span>
+                      </div>
+                    </div>
+                    
+                    <div class="sdk-branch-col">
+                      <div class="sdk-branch-drop"></div>
+                      <div class="sdk-node" style="font-size: 0.8rem; padding: 0.6rem 0.8rem;">
+                        <span class="sdk-icon">🚀</span>
+                        <span>New Feature Variant</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Flow 2: SDK Derivation -->
+                <div class="sdk-flow centered" id="flow-sdk" style="display: none; opacity: 0; transition: opacity 0.3s;">
+                  <div class="sdk-node source" style="border-color: var(--sp-accent); background: rgba(99, 102, 241, 0.08); z-index: 2;">
+                    <span class="sdk-icon">📋</span>
+                    <span>Core API Spec</span>
+                  </div>
+                  
+                  <!-- Trunk -->
+                  <div style="width: 2px; height: 16px; background: var(--sp-surface-border);"></div>
+                  
+                  <!-- Branches Container -->
+                  <div class="sdk-branch-container items-3">
+                    <div class="sdk-branch-line"></div>
+                    
+                    <!-- TypeScript Branch -->
+                    <div class="sdk-branch-col">
+                      <div class="sdk-branch-drop"></div>
+                      <div class="sdk-node" style="border-color: rgba(49, 120, 198, 0.5); background: rgba(49, 120, 198, 0.08); font-size: 0.8rem; padding: 0.6rem 0.8rem;">
+                        <span class="sdk-icon">🔷</span>
+                        <span>TypeScript</span>
+                      </div>
+                    </div>
+
+                    <!-- Go Branch -->
+                    <div class="sdk-branch-col">
+                      <div class="sdk-branch-drop"></div>
+                      <div class="sdk-node" style="border-color: rgba(0, 173, 216, 0.5); background: rgba(0, 173, 216, 0.08); font-size: 0.8rem; padding: 0.6rem 0.8rem;">
+                        <span class="sdk-icon">🐹</span>
+                        <span>Go SDK</span>
+                      </div>
+                    </div>
+
+                    <!-- Rust Branch -->
+                    <div class="sdk-branch-col">
+                      <div class="sdk-branch-drop"></div>
+                      <div class="sdk-node" style="border-color: rgba(222, 165, 132, 0.5); background: rgba(222, 165, 132, 0.08); font-size: 0.8rem; padding: 0.6rem 0.8rem;">
+                        <span class="sdk-icon">🦀</span>
+                        <span>Rust API</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 3: Architecture Governance Layer -->
+          <div class="feature-block grid-2 fade-in" id="feature-loop">
+            <div class="feature-text">
+              <h3>Architecture Governance Layer</h3>
+              <p>Specy is primarily an architecture governance layer. It establishes and enforces guardrails for your AI code development agents, ensuring that every AI-generated feature, API, or service complies with your established architectural standards.</p>
+              <ul class="feature-list">
+                <li>Strict guardrails for AI coding agents</li>
+                <li>Real-time governance dashboard</li>
+                <li>One-click approve or override</li>
+              </ul>
+            </div>
+            <div class="feature-visual">
+              <div class="glass-card">
+                <div class="dashboard-mock">
+                  <div class="dash-row">
+                    <div class="dash-item">
+                      <div class="dash-item-label">Architecture Score</div>
+                      <div class="dash-item-value ok">92</div>
+                      <div class="dash-bar"><div class="dash-bar-fill ok" style="width: 92%;"></div></div>
+                    </div>
+                    <div class="dash-item">
+                      <div class="dash-item-label">Spec Coverage</div>
+                      <div class="dash-item-value warn">67%</div>
+                      <div class="dash-bar"><div class="dash-bar-fill warn" style="width: 67%;"></div></div>
+                    </div>
+                  </div>
+                  <div class="dash-row">
+                    <div class="dash-item">
+                      <div class="dash-item-label">AI Actions Today</div>
+                      <div class="dash-item-value" style="color: var(--sp-accent-light);">24</div>
+                      <div class="dash-bar"><div class="dash-bar-fill accent" style="width: 80%;"></div></div>
+                    </div>
+                    <div class="dash-item">
+                      <div class="dash-item-label">Pending Reviews</div>
+                      <div class="dash-item-value warn">3</div>
+                      <div class="dash-bar"><div class="dash-bar-fill warn" style="width: 15%;"></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================ -->
+      <!-- PRICING / EARLY ACCESS           -->
+      <!-- ================================ -->
+      <section class="section sp-pricing" id="pricing">
+        <div class="container">
+          <div class="section-header fade-in">
+            <h2>Start building with <span class="gradient-text">Guardrails</span></h2>
+            <p style="color: var(--sp-text-secondary)">Currently in early access. Request an invite to secure your spot.</p>
+          </div>
+
+          <div class="pricing-grid fade-in delay-1">
+            <!-- Developer Tier -->
+            <div class="pricing-card">
+              <div class="tier-name">Developer</div>
+              <p class="tier-desc">For individuals building personal projects or exploring AI governance.</p>
+              <ul class="pricing-features">
+                <li>VS Code Plugin</li>
+                <li>Local MCP Server</li>
+                <li>Code → Spec → Diagram</li>
+                <li>Manual architecture tweaks</li>
+              </ul>
+              <a href="#early-access" class="btn btn-ghost btn-full">Join Waitlist</a>
+            </div>
+
+            <!-- Team Tier -->
+            <div class="pricing-card popular">
+              <div class="popular-badge">Most Popular</div>
+              <div class="tier-name">Team</div>
+              <p class="tier-desc">For engineering teams standardizing their AI development workflows.</p>
+              <ul class="pricing-features">
+                <li>Everything in Developer</li>
+                <li>Shared architectural guardrails</li>
+                <li>Cloud-synced specs & diagrams</li>
+                <li>Multi-language SDK derivation</li>
+              </ul>
+              <a href="#early-access" class="btn btn-accent btn-full">Request Invite</a>
+            </div>
+
+            <!-- Enterprise Tier -->
+            <div class="pricing-card">
+              <div class="tier-name">Enterprise</div>
+              <p class="tier-desc">For large organizations requiring strict compliance and custom integrations.</p>
+              <ul class="pricing-features">
+                <li>Everything in Team</li>
+                <li>Private AI engine deployments</li>
+                <li>Custom MCP tool integrations</li>
+                <li>Strict compliance enforcement</li>
+              </ul>
+              <a href="#cta-b2b" class="btn btn-ghost btn-full">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================ -->
+      <!-- CTA SECTION                      -->
+      <!-- ================================ -->
+      <section class="section sp-cta" id="early-access">
+        <div class="container">
+          <div class="section-header fade-in">
+            <h2>Get <span class="gradient-text">Started</span></h2>
+            <p style="color: var(--sp-text-secondary)">Whether you're an individual developer or an enterprise team, we'd love to hear from you.</p>
+          </div>
+
+          <div class="cta-grid fade-in delay-1">
+            <!-- B2C: Early Access -->
+            <div class="cta-box" id="cta-b2c">
+              <h3>🚀 Early Access</h3>
+              <p>Sign up to be among the first to try Specy when it launches.</p>
+              <form class="form-inline" id="earlyAccessForm">
+                <input type="email" placeholder="your@email.com" required aria-label="Email address" />
+                <button type="submit" class="btn btn-accent btn-sm">Join Waitlist</button>
+              </form>
+            </div>
+
+            <!-- B2B: Team Contact -->
+            <div class="cta-box" id="cta-b2b">
+              <h3>🏢 For Teams</h3>
+              <p>Want to bring Specy to your engineering organization? Let's talk.</p>
+              <form id="teamContactForm">
+                <div class="form-group">
+                  <label for="teamName">Name</label>
+                  <input type="text" id="teamName" placeholder="Jane Doe" required />
+                </div>
+                <div class="form-group">
+                  <label for="teamEmail">Work Email</label>
+                  <input type="email" id="teamEmail" placeholder="jane@company.com" required />
+                </div>
+                <div class="form-group">
+                  <label for="teamMessage">Message</label>
+                  <textarea id="teamMessage" placeholder="Tell us about your team and what you're looking for..." rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-accent">Send Message</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ================================ -->
+    <!-- FOOTER                           -->
+    <!-- ================================ -->
+    <footer class="footer sp-footer">
+      <div class="container">
+        <div class="nav-logo">
+          <span class="nav-logo-text" style="font-size: 1.2rem;">Specy</span>
+        </div>
+        <a href="/" class="footer-dokero-link">A Dokero product →</a>
+        <p class="footer-text">&copy; 2026 Dokero. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/js/shared.js"></script>
+    <script type="module" src="/js/specy.js"></script>
+  </body>
+</html>
