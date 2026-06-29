@@ -347,40 +347,42 @@
             </ul>
           </div>
           <div class="feature-visual">
-            <div class="glass-card">
-              <div class="dashboard-mock">
-                <div class="dash-row">
-                  <div class="dash-item">
-                    <div class="dash-item-label">Architecture Score</div>
-                    <div class="dash-item-value ok">92</div>
-                    <div class="dash-bar">
-                      <div class="dash-bar-fill ok" style="width: 92%;"></div>
-                    </div>
-                  </div>
-                  <div class="dash-item">
-                    <div class="dash-item-label">Spec Coverage</div>
-                    <div class="dash-item-value warn">67%</div>
-                    <div class="dash-bar">
-                      <div class="dash-bar-fill warn" style="width: 67%;"></div>
-                    </div>
-                  </div>
+            <div class="glass-card" style="padding-top: 1.5rem; padding-bottom: 1.5rem;">
+              <div class="gov-flow">
+                
+                <div class="gov-node-wrapper">
+                  <div class="gov-circle source">Developer</div>
+                  <div class="gov-text">Defines intent</div>
                 </div>
-                <div class="dash-row">
-                  <div class="dash-item">
-                    <div class="dash-item-label">AI Actions Today</div>
-                    <div class="dash-item-value" style="color: var(--sp-accent-light);">24</div>
-                    <div class="dash-bar">
-                      <div class="dash-bar-fill accent" style="width: 80%;"></div>
-                    </div>
-                  </div>
-                  <div class="dash-item">
-                    <div class="dash-item-label">Pending Reviews</div>
-                    <div class="dash-item-value warn">3</div>
-                    <div class="dash-bar">
-                      <div class="dash-bar-fill warn" style="width: 15%;"></div>
-                    </div>
-                  </div>
+
+                <div class="gov-arrow">→</div>
+
+                <div class="gov-node-wrapper">
+                  <div class="gov-circle success">Specy</div>
+                  <div class="gov-text">Enforces guardrails</div>
                 </div>
+
+                <div class="gov-arrow">→</div>
+
+                <div class="gov-node-wrapper">
+                  <div class="gov-circle warn">AI Agent</div>
+                  <div class="gov-text">Writes code</div>
+                </div>
+
+                <div class="gov-arrow">→</div>
+
+                <div class="gov-node-wrapper">
+                  <div class="gov-circle success">Specy</div>
+                  <div class="gov-text">Validates output</div>
+                </div>
+
+                <div class="gov-arrow">→</div>
+
+                <div class="gov-node-wrapper">
+                  <div class="gov-circle source">Developer</div>
+                  <div class="gov-text">Reviews & approves</div>
+                </div>
+
               </div>
             </div>
           </div>
